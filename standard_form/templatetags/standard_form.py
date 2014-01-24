@@ -188,5 +188,14 @@ register.tag(StandardForm)
 class StandardSubmit(InclusionTag):
     name = 'standard_submit'
     template = 'standard_form/submit.html'
+    options = Options(
+        KeywordArgument('display_name', required=False, default=None),
+    )
+
+    def get_context(self, context, **kwargs):
+        """
+        Returns the context to render the template with.
+        """
+        return {'submit_display_name': kwargs['display_name'].get('display_name')}
 
 register.tag(StandardSubmit)
