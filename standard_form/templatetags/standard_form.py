@@ -52,13 +52,13 @@ class StandardWidget(Tag):
     options = Options(
         Argument('field'),
         Argument('options', required=False, default=None),
-        KeywordArgument('input_id', required=False, default=None),
         KeywordArgument('custom_class', required=False, default=None),
         KeywordArgument('placeholder', required=False, default=None),
         KeywordArgument('input_type', required=False, default=None),
+        KeywordArgument('input_id', required=False, default=None),
     )
 
-    def render_tag(self, context, field, options, input_id, custom_class, placeholder, input_type):
+    def render_tag(self, context, field, options, custom_class, placeholder, input_type, input_id):
         args = get_options(options)
         input_id = input_id.get('input_id')
         placeholder = placeholder.get('placeholder')
