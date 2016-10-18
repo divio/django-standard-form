@@ -10,13 +10,15 @@ register = template.Library()
 
 
 def get_input_type(widget_type):
-    if widget_type in [Select, SelectMultiple]:
+    select_widgets = [Select, SelectMultiple]
+    if any([issubclass(widget_type, type_) for type_ in select_widgets]):
         return 'select'
-    if widget_type in [CheckboxSelectMultiple, RadioSelect]:
+    select_multiple_widgets = [CheckboxSelectMultiple, RadioSelect]
+    if any([issubclass(widget_type, type_) for type_ in select_multiple_widgets]):
         return 'radiocheck-list'
-    if widget_type is Textarea:
+    if issubclass(widget_type, Textarea):
         return 'textarea'
-    if widget_type is CheckboxInput:
+    if issubclass(widget_type, CheckboxInput):
         return 'radiocheck'
     if issubclass(widget_type, MultiWidget):
         return 'multi'
